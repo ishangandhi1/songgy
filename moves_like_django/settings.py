@@ -9,7 +9,7 @@ STATIC_FILES_PATH = os.path.join(HARMONIFY_PATH, 'static')
 STATIC_FILES_PATH = os.path.abspath(STATIC_FILES_PATH)
 TEMPLATES_PATH = os.path.join(PROJECT_PATH, 'templates')
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
