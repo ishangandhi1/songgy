@@ -18,7 +18,6 @@ psycopg2==2.5.2
 pycurl
 pyechonest==8.0.1
 pystache
-python-echoprint
 simplejson
 six
 sorl-thumbnail
