@@ -9,7 +9,7 @@ STATIC_FILES_PATH = os.path.join(HARMONIFY_PATH, 'static')
 STATIC_FILES_PATH = os.path.abspath(STATIC_FILES_PATH)
 TEMPLATES_PATH = os.path.join(PROJECT_PATH, 'templates')
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -20,13 +20,7 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'major_project_db',                      # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
-        'USER': 'ishan7692',
-        'PASSWORD': 'ishan7692',
-        'HOST': 'localhost',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '5432',                      # Set to empty string for default.
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.                    # Set to empty string for default.
     }
 }
 
@@ -193,6 +187,36 @@ LOGGING = {
         },
     }
 }
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+FACEBOOK_APP_ID = '1462424537321539'
+FACEBOOK_APP_SECRET = '6c9a1c307b742e8e2ff6da9f8a25e338'
+USERENA_ACTIVATION_REQUIRED = False
+USERENA_SIGNIN_AFTER_SIGNUP = True
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'ishan.gandhi1@gmail.com'
+EMAIL_HOST_PASSWORD = 'okhlikakutta131192'
+USERENA_SIGNIN_REDIRECT_URL = '/harmonify/%(username)s/'
+ANONYMOUS_USER_ID = -1
+AUTH_PROFILE_MODULE = 'harmonify.Profile'
+
+FACEBOOK_REGISTRATION_BACKEND = 'django_facebook.registration_backends.UserenaBackend'
+
+FACEBOOK_LOGIN_DEFAULT_REDIRECT = '/'
+
+LOGIN_REDIRECT_URL = '/harmonify/%(username)s/'
+LOGIN_URL = '/harmonify/signin/'
+logout_URL = '/harmonify/signout/'
+
+import dj_database_url
+
+DATABASES = { 'default' : dj_database_url.config()}
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 
 try:
     from local_settings import *
