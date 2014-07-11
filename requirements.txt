@@ -1,8 +1,7 @@
 Django==1.5.4
-Mako==0.5.0
-PAM==0.4.2
-PIL==1.1.7
-Pillow==2.3.1
+Mako
+PAM
+Pillow
 Twisted-Core
 Twisted-Names
 Twisted-Web
