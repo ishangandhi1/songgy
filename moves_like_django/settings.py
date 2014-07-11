@@ -212,7 +212,7 @@ logout_URL = '/harmonify/signout/'
 
 import dj_database_url
 
-DATABASES = { 'default' : dj_database_url.config()}
+DATABASES = { 'default' : dj_database_url.config(default=os.environ["HEROKU_POSTGRESQL_TEAL_URL"])}
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
