@@ -1,0 +1,97 @@
+{% extends 'userena/base.html' %}
+{% load static %}
+{% block title %}Music Search{% endblock %}
+{% block content %}
+<div class="container"> 
+<div class="hero-unit">
+	<h1 class="text-center">Find Music with Songgy</h1>
+	<br/>
+	<!--<form class="form-signin span8" id="user_form" method="post" action="/mango/music_search/">
+	{% csrf_token %}
+	<input type="text" size="50" name="mquery" value="" id="mquery" /><br/>
+
+	<input type="submit" class="btn btn-success" name="Music_Search" value="Music_Search" />
+		
+	</form>-->
+	{% if result_list %}
+        <!-- Display search results in an ordered list -->
+        <div style="clear: both;">
+            {% for result in result_list %}
+                
+                <p><h6 class="text-warning">Disclaimer: Due to the wide variety of audio tracks, the system may not be able to predict your song with 100% accuracy. Your song may be one of the following: </h6></p>
+                <div class="row-fluid span12">
+                {% for elt in result.title %}
+                    <div class="col span4">
+                        {{ result.artist }}<br>
+                        {{ elt }}<br>
+                        {{ result.song_genre.capitalize }}<br>
+                    </div>
+                {% endfor %}
+                </div>   
+            {% if result.song_genre %}
+            <form method="post" action="/harmonify/music_search/" align="center">
+                  {% csrf_token %}
+                <input type="hidden" value="{{ result.song_genre }}" name="song_genre" />
+                <input type="hidden" value="{{ result.artist }}"  name="artist" />
+                <input type="hidden" value="{{ result.title }}" name="title" />
+                <input type="submit" class="btn btn-success" name="recommendations" value="Get Recommendations" />
+            </form>
+            {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if old_result_lst %}
+        <div style="clear: both;">
+            {% for old_result in old_result_lst %}
+                <p><h6 class="text-warning">Disclaimer: Due to the wide variety of audio tracks, the system may not be able to predict your song with 100% accuracy. Your song may be one of the following: </h6></p>
+                <div class="row-fluid span12">
+                {% for elt in old_result.song_name %}
+                    <div class="col span4">
+                        {{ old_result.artist_name }}<br>
+                        {{ elt }}<br>
+                        {{ old_result.artist_genre.capitalize }}<br>
+                    </div>
+                {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if result_lst %}
+        <div style="clear: both;">
+            <ol>
+            {% for result in result_lst %}
+                <li>
+                    <strong>{{ result.title }} </strong> By {{ result.artist }}<br>
+                </li>
+            {% endfor %}
+            <ol>
+        </div>
+{% endif %}
+
+</div>
+</div>
+<div class="container">
+<div class="row-fluid span12">
+            <div class="hero-unit">
+                
+                 {% if send_user_list %}
+                    <div style="clear: both;">
+                    <p class="text-info" >Recommended friends for you</p>
+                    <hr>
+                        {% for user_profile in send_user_list %}
+                        <div class="col">
+                            <a href="{% url 'userena_profile_detail' user_profile.user.username %}"><img src="{{ user_profile.profile.get_mugshot_url }}" /></a>
+                            <a href="{% url 'userena_profile_detail' user_profile.user.username %}">{{ user_profile.user.username }}</a>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                {% else %}
+                <h5 class="text-info">You must login to get friend recomendations</h5>
+                {% endif %}
+            </div>
+</div>
+</div>
+</div>
+{% endblock %}
+

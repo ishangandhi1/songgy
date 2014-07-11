@@ -1,0 +1,16 @@
+{% extends 'userena/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Account activation failed." %}{% endblock %}
+<div class="hero-unit">
+<div class="page-header">
+{% block content_title %}<h2>{% trans "Your account could not be activated..." %}</h2>{% endblock %}
+</div>
+
+{% block content %}
+<div class="container">
+<p>{% trans "Your account could not be activated. This could be because your activation link has aged." %}</p>
+<p>{% trans "Please try signing up again or contact us if you think something went wrong." %}</p>
+</div>
+{% endblock %}
+</div>

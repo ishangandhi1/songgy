@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet"  href="{% static 'css/bootstrap-fluid-adj.css' %}">
+    <link rel="stylesheet"  href="{% static 'css/uploadbtn.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" media="screen">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-responsive.css' %}">
+   <link href="{% static 'css/facebook.css' %}" type="text/css" rel="stylesheet" media="all">
+   <link rel="stylesheet" type="text/css" href="{% static 'css/business-frontpage.css' %}">
+   {% block meta %}{% endblock %}
+  <title>{% block title %}Songgy{% endblock %}</title>
+  
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+   <div class="navbar-inner">
+       <div class="container">
+           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+           </button>
+           <a class="brand" href="/">Songgy</a>
+
+           <div class="nav-collapse collapse">
+               <ul class="nav pull-right">
+                   {% if user.is_authenticated %}
+                    
+                    <li><a href="/harmonify/signout/">Logout</a></li>
+                    <li><a href="/harmonify/upload/">Upload</a></li>
+                   {% else %}
+                    <li><a href="/harmonify/signup/">Register</a></li>
+                    <li><a href="/harmonify/signin/">Login</a></li>
+                    <li><a href="/harmonify/upload/">Upload</a></li>
+
+                   {% endif %}
+               </ul>
+               <ul class="nav pull-right">
+                   {% if user.is_authenticated %}
+                   <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    {{ user.username }} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                    <li><a href="{% url 'userena_profile_detail' user.username %}">View Profile</a></li>
+                    <li><a href="{% url 'userena_profile_edit' user.username %}">Edit Profile</a></li>
+                    <li><a href="{% url 'userena_password_change' user.username %}">Change Password</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/harmonify/">All Profiles</a></li>
+                    </ul>
+                  </div>
+                   {% endif %}
+               </ul>
+           </div>
+           <!--/.nav-collapse -->
+       </div>
+   </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            
+            {% block content_title%}
+            {% endblock %}
+            {% block sidebar %}
+            {% endblock %}
+            {% block content %}
+            {% endblock %}
+            
+        </div>
+    </div>
+</div>
+<!--/.fluid-container-->
+
+<hr>
+<footer>
+    <div class="container">
+        <div class="row-fluid" align="center">
+                <p>Copyright &copy; Songgy 2014</p>
+        </div>
+    </div>
+</footer>
+
+
+  <script src="{% static 'js/jquery-2.1.0.js' %}"></script>
+  <script src="{% static 'js/dog.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js'%}"></script>
+  <script src="{% static 'js/mango-ajax.js' %}" ></script>
+  {% block footer %}{% endblock %}
+</body>
+</html>
