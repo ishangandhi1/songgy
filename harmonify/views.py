@@ -11,7 +11,7 @@ from django.core.context_processors import csrf
 # for HTTP response
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 import json
-from harmonify.identify import music_identify
+#from harmonify.identify import music_identify
 from harmonify.genre_list import glist
 from harmonify.msearch import genre_query
 from django.http import HttpResponseRedirect ,HttpResponse, Http404
