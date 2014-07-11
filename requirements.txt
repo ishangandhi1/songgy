@@ -2,9 +2,6 @@ Django==1.5.4
 Mako
 PAM
 Pillow
-apturl
-argparse
-## FIXME: could not find svn URL in dependency_links for this package:
 distribute
 dj-database-url
 dj-static
@@ -14,14 +11,9 @@ django-jfu
 django-multiuploader
 django-toolbelt==0.0.1
 django-userena
-duplicity==0.6.18
 easy-thumbnails==1.5
 gunicorn==18.0
 hsaudiotag
-html2text
-httplib2
-jockey
-keyring
 psycopg2==2.5.2
 pycurl
 pyechonest==8.0.1
